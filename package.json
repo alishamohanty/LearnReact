@@ -5,13 +5,11 @@
   "author": "Alisha Mohanty",
   "license": "MIT",
   "scripts": {
-    "dev": "pm2 start lib/server.js --watch --interpreter ./node_modules/babel-cli/bin/babel-node.js"
+    "start": "webpack-dev-server --config webpack.config.dev.js --port 3000"
   },
   "babel": {
     "presets": [
-      "react",
-      "env",
-      "stage-2"
+      "babel-preset-react-app"
     ]
   },
   "devDependencies": {
@@ -20,12 +18,29 @@
     "eslint-plugin-react": "^7.19.0"
   },
   "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@material-ui/core": "^4.9.12",
+    "@material-ui/icons": "^4.9.1",
     "babel-cli": "^6.26.0",
+    "babel-loader": "^8.1.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-react-app": "^9.1.2",
     "babel-preset-stage-2": "^6.24.1",
-    "ejs": "^3.1.2",
-    "express": "^4.17.1",
-    "pm2": "^4.4.0"
+    "bootstrap": "^4.4.1",
+    "css-loader": "^3.5.3",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.20.2",
+    "html-webpack-plugin": "^4.2.0",
+    "immer": "^6.0.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5",
+    "reselect": "^4.0.0",
+    "style-loader": "^1.2.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
