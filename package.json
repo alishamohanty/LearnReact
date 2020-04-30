@@ -5,7 +5,10 @@
   "author": "Alisha Mohanty",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.dev.js --port 4000"
+    "start": "./node_modules/npm-run-all/bin/npm-run-all/index.js --parallel start:dev start:api",
+    "start:dev": "webpack-dev-server --config webpack.config.dev.js --port 4000",
+    "prestart:api": "node tools/createMockDb.js",
+    "start:api": "node tools/apiServer.js"
   },
   "babel": {
     "presets": [
@@ -31,8 +34,12 @@
     "css-loader": "^3.5.3",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.20.2",
+    "fs": "0.0.1-security",
     "html-webpack-plugin": "^4.2.0",
     "immer": "^6.0.3",
+    "json-server": "^0.16.1",
+    "npm-run-all": "^4.1.5",
+    "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
