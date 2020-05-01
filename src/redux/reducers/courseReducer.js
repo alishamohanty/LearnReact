@@ -1,6 +1,7 @@
 import * as types from '../actions/actionTypes';
+import initialState from  './initailState';
 
-export default function courseReducer(state = [], actions) {
+export default function courseReducer(state = initialState.courses, actions) {
   switch (actions.type) {
   case types.CREATE_COURSE:
     return [...state, { ...actions.course }];
