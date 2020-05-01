@@ -12,18 +12,18 @@ class CoursesPage extends React.Component {
     },
   };
   componentDidMount() {
-    const { courses, actions } = this.props;
+    const { courses, authors, actions } = this.props;
 
     if (courses.length === 0) {
-      actions.loadCourses().catch(error => {
+      actions.loadCourses().catch((error) => {
         alert('Loading courses failed' + error);
       });
     }
-    
-    actions.loadAuthors().catch(error => {
-      alert('Loading authors failed' + error);
-    });
-
+    if (authors.length === 0) {
+      actions.loadAuthors().catch((error) => {
+        alert('Loading authors failed' + error);
+      });
+    }
   }
   render() {
     return (
@@ -36,6 +36,7 @@ class CoursesPage extends React.Component {
 }
 
 CoursesPage.propTypes = {
+  authors: PropTypes.array.isRequired,
   courses: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 };
@@ -52,6 +53,7 @@ function mapStateToProps(state) {
               .name,
           };
         }),
+    authors: state.authors,
   };
 }
 
