@@ -1,6 +1,7 @@
 // /* eslint-disable no-used-vars */
 import * as types from './actionTypes';
 import * as courseApi from '../../api/courseApi';
+import { beginApiCall } from './apiStatusActions';
 
 export function createCourseSuccess(course) {
   return { type: types.CREATE_COURSE_SUCCESS, course };
@@ -14,6 +15,8 @@ export function updateCourseSuccess(course) {
 
 export function loadCourses() {
   return function (dispatch) {
+    dispatch(beginApiCall());
+    debugger;
     return courseApi
       .getCourses()
       .then((courses) => {
@@ -27,6 +30,7 @@ export function loadCourses() {
 
 export function saveCourse(course) {
   return function (dispatch) {
+    dispatch(beginApiCall());
     return courseApi
       .saveCourse(course)
       .then((savedCourse) => {
