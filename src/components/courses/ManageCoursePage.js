@@ -17,6 +17,7 @@ function ManageCoursePage({
 }) {
   const [course, setCourse] = useState({ ...props.courses });
   const [errors] = useState({});
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (courses.length === 0) {
@@ -44,6 +45,7 @@ function ManageCoursePage({
 
   function handleSave(event) {
     event.preventDefault();
+    setSaving(true);
     saveCourse(course).then(() => {
       history.push('/courses');
     });
@@ -56,6 +58,7 @@ function ManageCoursePage({
       authors={authors}
       onChange={handleChange}
       onSave={handleSave}
+      saving={saving}
     ></CourseForm>
   );
 }
@@ -67,6 +70,7 @@ ManageCoursePage.propTypes = {
   loadCourses: PropTypes.func.isRequired,
   loadAuthors: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  saving: PropTypes.bool
 };
 
 export function getCourseBySlug(courses, slug) {
