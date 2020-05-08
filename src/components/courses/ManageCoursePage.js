@@ -5,6 +5,7 @@ import { loadAuthors } from '../../redux/actions/authorActions';
 import PropTypes from 'prop-types';
 import { newCourse } from '../../../tools/mockData';
 import CourseForm from './CourseForm';
+import { toast } from 'react-toastify';
 
 function ManageCoursePage({
   courses,
@@ -47,6 +48,7 @@ function ManageCoursePage({
     event.preventDefault();
     setSaving(true);
     saveCourse(course).then(() => {
+      toast.success('Course saved.');
       history.push('/courses');
     });
   }
@@ -70,7 +72,7 @@ ManageCoursePage.propTypes = {
   loadCourses: PropTypes.func.isRequired,
   loadAuthors: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
-  saving: PropTypes.bool
+  saving: PropTypes.bool,
 };
 
 export function getCourseBySlug(courses, slug) {
