@@ -25,9 +25,7 @@ class CoursesPage extends React.Component {
       });
     }
   }
-  componentDidUpdate() {
-    console.log(this.props.loading);
-  }
+
   render() {
     return (
       <>

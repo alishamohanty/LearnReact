@@ -17,7 +17,7 @@ function ManageCoursePage({
   ...props
 }) {
   const [course, setCourse] = useState({ ...props.courses });
-  const [errors] = useState({});
+  const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -50,6 +50,9 @@ function ManageCoursePage({
     saveCourse(course).then(() => {
       toast.success('Course saved.');
       history.push('/courses');
+    }).catch((error) => {
+      setSaving(false);
+      setErrors({onSave: error.message});
     });
   }
 
@@ -81,7 +84,6 @@ export function getCourseBySlug(courses, slug) {
 
 function mapStateToProps(state, ownProps) {
   const slug = ownProps.match.params.slug;
-  debugger;
   const course =
     slug && state.courses.length > 0
       ? getCourseBySlug(state.courses, slug)

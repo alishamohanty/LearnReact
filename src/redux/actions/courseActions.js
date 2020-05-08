@@ -1,7 +1,7 @@
 // /* eslint-disable no-used-vars */
 import * as types from './actionTypes';
 import * as courseApi from '../../api/courseApi';
-import { beginApiCall } from './apiStatusActions';
+import { beginApiCall, apiCallError } from './apiStatusActions';
 
 export function createCourseSuccess(course) {
   return { type: types.CREATE_COURSE_SUCCESS, course };
@@ -16,13 +16,13 @@ export function updateCourseSuccess(course) {
 export function loadCourses() {
   return function (dispatch) {
     dispatch(beginApiCall());
-    debugger;
     return courseApi
       .getCourses()
       .then((courses) => {
         dispatch(loadCoursesSuccess(courses));
       })
       .catch((err) => {
+        dispatch(apiCallError(err));
         throw err;
       });
   };
@@ -39,6 +39,7 @@ export function saveCourse(course) {
           : dispatch(createCourseSuccess(savedCourse));
       })
       .catch((error) => {
+        dispatch(apiCallError(error));
         throw error;
       });
   };
